@@ -8,10 +8,8 @@ class Solution:
                    momentum: float, eps: float, training: bool) -> Tuple[List[List[float]], List[float], List[float]]:
         # During training: normalize using batch statistics, then update running stats
         x, gamma, beta = np.array(x), np.array(gamma), np.array(beta)
-
-        running_mean = np.array(running_mean, dtype=np.float64)
-        running_var = np.array(running_var, dtype=np.float64)
-
+        running_mean, running_var = np.array(running_mean), np.array(running_var)
+        
         if training:
             batch_mean, batch_var = np.mean(x, axis=0), np.var(x, axis=0)
             x_hat = (x - batch_mean) / np.sqrt(batch_var + eps)
